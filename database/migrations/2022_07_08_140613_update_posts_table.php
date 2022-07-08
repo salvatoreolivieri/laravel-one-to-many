@@ -16,9 +16,9 @@ class UpdatePostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
 
             // 1. creo la colonna della foreign key:
-            $table->unsignedBigInteger('categories_id')->nullable()->after('id');
+            $table->unsignedBigInteger('category_id')->nullable()->after('id');
 
-            $table->foreign('categories_id')
+            $table->foreign('category_id')
 					->references('id')
 					->on('categories')
 					->onDelete('set null'); //se la elimino e alcuni elementi sono associati a quell'id, in questo modo diventa 'null'.
@@ -36,10 +36,10 @@ class UpdatePostsTable extends Migration
         Schema::table('posts', function (Blueprint $table) {
 
             //1. elimino la foreign key:
-            $table->dropForeign(['categories_id']);
+            $table->dropForeign(['category_id']);
 
             //2. elimino la colonna:
-            $table->dropColumn('categories_id');
+            $table->dropColumn('category_id');
 
         });
     }

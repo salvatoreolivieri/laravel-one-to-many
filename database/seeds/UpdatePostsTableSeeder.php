@@ -1,7 +1,7 @@
 <?php
 
 use App\Post;
-use App\Categories;
+use App\Category;
 use Illuminate\Database\Seeder;
 
 class UpdatePostsTableSeeder extends Seeder
@@ -17,8 +17,8 @@ class UpdatePostsTableSeeder extends Seeder
 
         //Ad ogni ciclo estraggo random un id dalla tab categories:
         foreach ($posts as $post){
-            $categories_id = Categories::inRandomOrder()->first()->id;
-            $post->categories_id = $categories_id;
+            $category_id = Category::inRandomOrder()->first()->id;
+            $post->category_id = $category_id;
             $post->update();
         }
     }

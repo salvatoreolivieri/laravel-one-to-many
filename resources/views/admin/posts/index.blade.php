@@ -23,7 +23,7 @@
                         <td>{{$post->title}}</td>
                         <td>{{$post->slug}}</td>
 
-                        <td>{{ $post->categories ? $post->categories_id->name : '-' }}</td>
+                        <td>{{ $post->category ? $post->category->name : '-' }}</td>
 
                         <td>
                             <a class="btn btn-success" href="{{route('admin.posts.show', $post)}}">Show</a>
