@@ -21,14 +21,28 @@
                     class="form-control"
                     placeholder="Titolo Post">
                 </div>
+
                 <div class="mb-3">
-                    <label for="slug" class="form-label">Slug</label>
-                    <input type="text" id="slug"
-                    name="slug"
-                    value="{{$post->slug }}"
-                    class="form-control"
-                    placeholder="Slug post" >
+
+                    <span style="display: inline-block" class="mb-2">Seleziona la categoria</span>
+
+                    <select type="text"
+                                id="category_id"
+                                name="category_id"
+                                class="form-control"
+                                uncliccable>
+
+                                <option value="null" selected>Nessuna categoria</option>
+
+                                @foreach ($categories as $category )
+                                    <option
+                                    @if ($category->id == $post->category_id) selected @endif
+                                    value="{{$category->id}}" >{{$category->name}}</option>
+                                @endforeach
+
+                    </select>
                 </div>
+
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea

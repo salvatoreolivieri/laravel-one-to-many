@@ -31,7 +31,7 @@
                                 <option value="null" selected>Nessuna categoria</option>
 
                                 @foreach ($categories as $category )
-                                    <option @if ($category->id == old ('category_id')) selected @endif value="{{$category->id}}" >{{$category->name}}</option>
+                                    <option value="{{$category->id}}" >{{$category->name}}</option>
                                 @endforeach
 
                     </select>
