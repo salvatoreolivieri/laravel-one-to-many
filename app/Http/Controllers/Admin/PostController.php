@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Post;
 use App\Category;
+use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view ('admin.posts.create');
+        $categories = Category::all();
+        return view ('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -37,14 +39,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         $data = $request->all();
 
         $new_post = new Post();
+        $data['slug'] = Post::slugGenerator($data['title']);
 
         $new_post->fill($data);
-
         $new_post->save();
 
         return redirect()->route('admin.posts.show', $new_post);
